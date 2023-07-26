@@ -31,4 +31,23 @@ class BookController extends Controller
         $book->fill($request->except('_token'))->save();
         return redirect(route('books.index'));
     }
+
+    // book編集データ表示処理
+    /*
+        bookデータを取得しeditViewへ渡す
+    */
+    public function edit($id)
+    {
+        $data = [
+            'book' => Book::findOrFail($id)
+        ];
+        return view('books.edit', $data);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $book = Book::find($id);
+        $book->fill($request->except('_token', '_method'))->save();
+        return redirect(route('books.show', ['book' => $book->id]));
+    }
 }
