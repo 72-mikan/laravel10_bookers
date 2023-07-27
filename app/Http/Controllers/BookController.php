@@ -44,6 +44,12 @@ class BookController extends Controller
         return view('books.edit', $data);
     }
 
+    // book編集処理
+    /*
+        1. bookデータを取得
+        2. データの更新
+        3. books.showリダイレクト
+    */
     public function update(Request $request, $id)
     {
         $book = Book::find($id);
