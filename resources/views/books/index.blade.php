@@ -18,7 +18,7 @@
     <tr>
       <td>{{ $book->title }}</td>
       <td>{{ $book->body }}</td>
-      <td><a href="">Show</a></td>
+      <td><a href="{{ route('books.show', ['book' => $book->id]) }}">Show</a></td>
       <td><a href="{{ route('books.edit', ['book' => $book->id]) }}">Edit</a></td>
       <td>
         <form method="post" action="{{ route('books.destroy', ['book' => $book->id]) }}" name="deleteForm_{{ $book->id }}">

@@ -31,6 +31,17 @@ class BookController extends Controller
         return redirect(route('books.index'));
     }
 
+    // book詳細データ表示
+    /*
+        bookデータを取得しshowViewへ渡す
+    */
+    public function show($id)
+    {
+        $data = [
+            'book' => Book::findOrFail($id)
+        ];
+        return view('books.show', $data);
+    }
 
     // book編集データ表示処理
     /*
