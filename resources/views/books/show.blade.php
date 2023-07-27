@@ -6,6 +6,15 @@
 
 <!-- main -->
 @section('main')
+  <!-- book_form -->
+  @include('books.components.form', [
+    'route' => route('books.store'),
+    'method' => 'POST',
+    'title' => '',
+    'body' => '',
+    'type' => '投稿'
+  ])
+
   <!-- book_show -->
   <h1>Book Show</h1>
   <table>
