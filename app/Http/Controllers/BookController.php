@@ -14,8 +14,7 @@ class BookController extends Controller
     public function index()
     {
         $data = [
-            'books' => Book::all(),
-            'save_url' => route('books.store')
+            'books' => Book::all()
         ];
         return view('books.index', $data);
     }
@@ -29,6 +28,19 @@ class BookController extends Controller
     {
         $book = new Book();
         $book->fill($request->except('_token'))->save();
+        return redirect(route('books.index'));
+    }
+
+    // bookデータ削除処理
+    /*
+        1. book_data検索・取得
+        2. book_data削除
+        3. books.indexリダイレクト
+    */
+    public function destroy($id)
+    {
+        $book = Book::findOrFail($id);
+        $book->delete();
         return redirect(route('books.index'));
     }
 }

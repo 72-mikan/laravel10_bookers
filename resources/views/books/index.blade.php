@@ -21,7 +21,8 @@
       <td><a href="">Show</a></td>
       <td><a href="">Edit</a></td>
       <td>
-        <form method="post" action="/books/{{ $book->id }}" name="deleteForm_{{ $book->id }}">
+        <form method="post" action="{{ route('books.destroy', ['book' => $book->id]) }}" name="deleteForm_{{ $book->id }}">
+          @csrf
           @method('DELETE')
         </form>
         <a href="javascript:document.deleteForm_{{ $book->id }}.submit()">Destroy</a>
@@ -32,7 +33,7 @@
 
   <!-- book_form -->
   <h1>Book Form</h1>
-  <form method="post" action="{{ $save_url }}">
+  <form method="post" action="{{ route('books.store') }}">
     @csrf
     <table>
       <tr>
