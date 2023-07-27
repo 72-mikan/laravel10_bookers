@@ -12,6 +12,8 @@
         @csrf
       </form>
       <li><a href="javascript:document.logout_btn.submit()">ログアウト</a></li>
+      <li><a href="{{ route('books.index') }}">本一覧</a></li>
+      <li><a href="{{ route('users.index') }}">ユーザー一覧</a></li>
     </ul>
     @section('main')
     <p>既定のコンテンツ</p>
