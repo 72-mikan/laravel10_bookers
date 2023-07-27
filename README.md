@@ -74,3 +74,4 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 - 新規登録機能
 - 投稿一覧機能
 - 投稿編集機能
+- 投稿削除機能
