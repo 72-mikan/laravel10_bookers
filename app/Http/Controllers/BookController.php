@@ -31,4 +31,12 @@ class BookController extends Controller
         $book->fill($request->except('_token'))->save();
         return redirect(route('books.index'));
     }
+
+    public function show($id)
+    {
+        $data = [
+            'book' => Book::findOrFail($id)
+        ];
+        return view('books.show', $data);
+    }
 }
