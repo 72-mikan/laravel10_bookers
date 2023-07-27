@@ -79,3 +79,6 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 - 投稿削除機能
 - 新規登録・ログイン機能
   - アクセス制限なし
+- ユーザー一覧
+- ユーザー詳細
+  - relationshipでbook情報表示

@@ -20,6 +20,11 @@ class UserController extends Controller
         return view('users.index', $data);
     }
 
+    // user詳細
+    /*
+        1. userデータ取得
+        2. users.showリダイレクト
+    */
     public function show($id)
     {
         $data = [
