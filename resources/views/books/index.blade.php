@@ -23,26 +23,37 @@
 
   <!-- book_list -->
   <h1>Book List</h1>
-  <table>
-    <tr>
-      <th>title</th>
-      <th>body</th>
-      <th colspan="3"></th>
-    </tr>
-    @foreach($books as $book)
-    <tr>
-      <td>{{ $book->title }}</td>
-      <td>{{ $book->body }}</td>
-      <td><a href="{{ route('books.show', ['book' => $book->id]) }}">Show</a></td>
-      <td><a href="{{ route('books.edit', ['book' => $book->id]) }}">Edit</a></td>
-      <td>
-        <form method="post" action="{{ route('books.destroy', ['book' => $book->id]) }}" name="deleteForm_{{ $book->id }}">
-          @csrf
-          @method('DELETE')
-        </form>
-        <a href="javascript:document.deleteForm_{{ $book->id }}.submit()">Destroy</a>
-      </td>
-    </tr>
-    @endforeach
-  </table>
+
+  @include('books.components.list', [
+    'books' => $books
+  ])
+
+  <!-- book_form -->
+  <h1>Book Form</h1>
+  <!-- post error -->
+  @if(count($errors) > 0)
+    <ul>
+      @foreach($errors->all() as $error)
+        <li>{{ $error }}</li>
+      @endforeach
+    </ul>
+  @endif
+
+  <form method="post" action="{{ route('books.store') }}">
+    @csrf
+    <table>
+      <tr>
+        <td><label>title</label></td>
+        <td><input type="text" name="title" value="{{ old('title') }}" /></td>
+      </tr>
+      <tr>
+        <td>body</td>
+        <td><input type="text" name="body" value="{{ old('body') }}" /></td>
+      </tr>
+      <tr>
+        <td><input type="submit" value="送信" /></td>
+        <td></td>
+      </tr>
+    </table>
+  </form>
 @endsection
