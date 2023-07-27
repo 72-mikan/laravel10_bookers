@@ -67,11 +67,15 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 # 開発環境
 - Laravel Framework 10.15.0
+- node v16.13.2
 - PostgreSQL 15.2
 - view blade : laravel-template
+- Breeze
 
 # 機能一覧
 - 新規登録機能
 - 投稿一覧機能
 - 投稿編集機能
 - 投稿削除機能
+- 新規登録・ログイン機能
+  - アクセス制限なし
