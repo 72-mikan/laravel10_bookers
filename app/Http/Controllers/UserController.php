@@ -19,4 +19,12 @@ class UserController extends Controller
         ];
         return view('users.index', $data);
     }
+
+    public function show($id)
+    {
+        $data = [
+            'user' => User::findOrFail($id)
+        ];
+        return view('users.show', $data);
+    }
 }
