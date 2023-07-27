@@ -33,6 +33,15 @@
 
   <!-- book_form -->
   <h1>Book Form</h1>
+  <!-- post error -->
+  @if(count($errors) > 0)
+    <ul>
+      @foreach($errors->all() as $error)
+        <li>{{ $error }}</li>
+      @endforeach
+    </ul>
+  @endif
+
   <form method="post" action="{{ route('books.store') }}">
     @csrf
     <table>

@@ -21,11 +21,13 @@ class BookController extends Controller
 
     // bookデータ保存処理
     /*
-        1. book_data保存
-        2. books.indexリダイレクト
+        1. 投稿チェック
+        2. book_data保存
+        3. books.indexリダイレクト
     */
     public function store(Request $request)
     {
+        $this->validate($request, Book::$rules);
         $book = new Book();
         $book->fill($request->except('_token'))->save();
         return redirect(route('books.index'));
@@ -58,12 +60,15 @@ class BookController extends Controller
     // book編集処理
     /*
         1. bookデータを取得
-        2. データの更新
-        3. books.showリダイレクト
+        2. 投稿エラーチェック
+        3. データ更新
+        4. books.showリダイレクト 
     */
     public function update(Request $request, $id)
     {
         $book = Book::find($id);
+        // 投稿エラーチェック
+        $this->validate($request, Book::$rules);
         $book->fill($request->except('_token', '_method'))->save();
         return redirect(route('books.show', ['book' => $book->id]));
     }

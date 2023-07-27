@@ -8,6 +8,16 @@
 @section('main')
   <!-- book_edit_form -->
   <h1>Edit Book</h1>
+  
+  <!-- post error -->
+  @if(count($errors) > 0)
+    <ul>
+      @foreach($errors->all() as $error)
+        <li>{{ $error }}</li>
+      @endforeach
+    </ul>
+  @endif
+
   <form method="post" action="{{ route('books.update', ['book' => $book->id]) }}">
     @csrf
     @method('PATCH')
