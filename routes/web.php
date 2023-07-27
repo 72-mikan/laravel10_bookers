@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\HomeController;
 
@@ -18,6 +19,9 @@ use App\Http\Controllers\HomeController;
 
 // top page
 Route::get('/', [HomeController::class, 'top'])->name('homes.top');
+
+// userURL
+Route::resource('users', UserController::class);
 
 // booksURL
 Route::resource('books', BookController::class);
