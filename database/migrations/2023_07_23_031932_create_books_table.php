@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('books', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title');
-            $table->text('body');
+            $table->integer('user_id')->nullable(false);
+            $table->string('title')->nullable(false);
+            $table->text('body')->nullable(false);
             $table->timestamps();
         });
     }
