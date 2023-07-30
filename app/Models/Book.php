@@ -17,7 +17,7 @@ class Book extends Model
     }
 
     // マスアサイメント
-    protected $fillable = ['title', 'body'];
+    protected $fillable = ['title', 'body', 'user_id'];
 
     // books validate
     /* 条件
