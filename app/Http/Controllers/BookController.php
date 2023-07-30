@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Book;
+
 
 class BookController extends Controller
 {
@@ -28,7 +30,9 @@ class BookController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, Book::$rules);
+        $user = Auth::user();
         $book = new Book();
+        $book->user_id = $user->id;
         $book->fill($request->except('_token'))->save();
         return redirect(route('books.index'));
     }
