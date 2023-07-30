@@ -76,7 +76,9 @@ class BookController extends Controller
         // 投稿エラーチェック
         $this->validate($request, Book::$rules);
         $book->fill($request->except('_token', '_method'))->save();
-        return redirect(route('books.show', ['book' => $book->id]));
+        return redirect(route('books.show', ['book' => $book->id]))
+        ->withInput()
+        ->with('alert', '投稿を編集しました');
     }
 
     // bookデータ削除処理
