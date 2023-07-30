@@ -6,6 +6,11 @@
 
 <!-- main -->
 @section('main')
+  <!-- post flash -->
+  @if(session('alert'))
+  <div>{{ session('alert') }}</div>
+  @endif
+  
   <!-- book_form -->
   @include('books.components.form', [
     'route' => route('books.store'),

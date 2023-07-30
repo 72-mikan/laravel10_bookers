@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Book;
+
 
 class BookController extends Controller
 {
@@ -28,9 +30,13 @@ class BookController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, Book::$rules);
+        $user = Auth::user();
         $book = new Book();
+        $book->user_id = $user->id;
         $book->fill($request->except('_token'))->save();
-        return redirect(route('books.index'));
+        return redirect(route('books.index'))
+            ->withInput()
+            ->with('alert', '投稿を保存しました');
     }
 
     // book詳細データ表示
@@ -70,7 +76,9 @@ class BookController extends Controller
         // 投稿エラーチェック
         $this->validate($request, Book::$rules);
         $book->fill($request->except('_token', '_method'))->save();
-        return redirect(route('books.show', ['book' => $book->id]));
+        return redirect(route('books.show', ['book' => $book->id]))
+        ->withInput()
+        ->with('alert', '投稿を編集しました');
     }
 
     // bookデータ削除処理
