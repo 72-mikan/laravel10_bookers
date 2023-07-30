@@ -30,7 +30,9 @@ class BookController extends Controller
         $this->validate($request, Book::$rules);
         $book = new Book();
         $book->fill($request->except('_token'))->save();
-        return redirect(route('books.index'));
+        return redirect(route('books.index'))
+            ->withInput()
+            ->with('alert', '投稿を保存しました');
     }
 
     // book詳細データ表示
